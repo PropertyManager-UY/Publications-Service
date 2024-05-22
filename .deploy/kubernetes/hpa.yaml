@@ -1,0 +1,32 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${HPA_NAME}
+  namespace: ${K8_NAMESPACE}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${K8_DEPLOYMENT}  # Nombre del deployment que deseas escalar
+  minReplicas: 1  # Número mínimo de réplicas
+  maxReplicas: 5  # Número máximo de réplicas
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50  # Porcentaje de uso de CPU deseado para escalar
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageValue: 500Mi  # Uso de memoria deseado para escalar
+  - type: Pods
+    pods:
+      metric:
+        name: http_requests_per_second
+      target:
+        type: AverageValue
+        averageValue: 1000  # Cantidad de peticiones por segundo para escalar

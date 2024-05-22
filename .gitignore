@@ -1,0 +1,3 @@
+# Ignorar archivos y carpetas generados por Python
+__pycache__/
+tests/__pycache__/
