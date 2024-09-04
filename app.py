@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
 APP_ID = os.getenv('APP_ID')
-SECRET_KEY = os.getenv('MERCADOLIBRE_SECRET_KEY')
+MERCADOLIBRE_SECRET_KEY = os.getenv('MERCADOLIBRE_SECRET_KEY')
 REDIRECT_URI = os.getenv('REDIRECT_URI')
 DASHBOARD_URI = os.getenv('DASHBOARD_URI')
 
@@ -78,7 +78,7 @@ def callback():
         data={
             "grant_type": "authorization_code",
             "client_id": APP_ID,
-            "client_secret": SECRET_KEY,
+            "client_secret": MERCADOLIBRE_SECRET_KEY,
             "code": code,
             "redirect_uri": REDIRECT_URI
         }

@@ -12,6 +12,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: test_key
+      JWT_SECRET_KEY: test_jwt_key
+      MONGO_URI: mongodb://localhost:27017/
+      TEST_DATABASE_NAME: property_manager_test
+      INMOBILIARY_COLLECTION: inmobiliary
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
