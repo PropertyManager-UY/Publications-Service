@@ -66,7 +66,7 @@ class PublicationsTestCase(unittest.TestCase):
         with patch.object(inmobiliary_collection, 'find_one', return_value=inmobiliaria):
             mock_post.return_value.status_code = 201
             mock_post.return_value.json.return_value = {"id": "123"}
-            response = self.app.post('/publicaciones/test_inmobiliary_id/test_user_id', json={})
+            response = self.app.post('/test_inmobiliary_id/test_user_id', json={})
             self.assertEqual(response.status_code, 201)
             self.assertIn(b'Publicacion creada y sincronizada con MercadoLibre', response.data)
 
@@ -77,7 +77,7 @@ class PublicationsTestCase(unittest.TestCase):
         with patch.object(inmobiliary_collection, 'find_one', return_value=inmobiliaria):
             mock_put.return_value.status_code = 200
             mock_put.return_value.json.return_value = publicacion
-            response = self.app.put('/publicaciones/123', json={})
+            response = self.app.put('/123', json={})
             self.assertEqual(response.status_code, 200)
 
     @patch('app.requests.delete')
@@ -87,7 +87,7 @@ class PublicationsTestCase(unittest.TestCase):
         with patch.object(inmobiliary_collection, 'find_one', return_value=inmobiliaria):
             with patch.object(publicaciones_collection, 'find_one', return_value=publicacion):
                 mock_delete.return_value.status_code = 200
-                response = self.app.delete('/publicaciones/123')
+                response = self.app.delete('/123')
                 self.assertEqual(response.status_code, 200)
 
     @patch('app.publicaciones_collection.find')
@@ -99,7 +99,7 @@ class PublicationsTestCase(unittest.TestCase):
         mock_find.return_value = MagicMock()
         mock_find.return_value.__iter__.return_value = publicaciones
 
-        response = self.app.get('/publicaciones/inmobiliaria/test_inmobiliary_id')
+        response = self.app.get('/inmobiliaria/test_inmobiliary_id')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'123', response.data)
         self.assertIn(b'124', response.data)
@@ -113,7 +113,7 @@ class PublicationsTestCase(unittest.TestCase):
         mock_find.return_value = MagicMock()
         mock_find.return_value.__iter__.return_value = publicaciones
 
-        response = self.app.get('/publicaciones/usuario/test_user_id')
+        response = self.app.get('/usuario/test_user_id')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'123', response.data)
         self.assertIn(b'124', response.data)
