@@ -1,3 +1,9 @@
 # Ignorar archivos y carpetas generados por Python
 __pycache__/
 tests/__pycache__/
+
+# Ignorar archivos de configuracion y de pruebas locales
+
+.env
+session.ini
+local_session.py
