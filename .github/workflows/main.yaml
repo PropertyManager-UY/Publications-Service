@@ -14,10 +14,14 @@ jobs:
 
     env:
       SECRET_KEY: test_key
-      JWT_SECRET_KEY: test_jwt_key
+      MERCADOLIBRE_SECRET_KEY: test_mercadolibre_key
+      APP_ID: test_app_id
+      REDIRECT_URI: redirect_uri.test
+      DASHBOARD_URI: dashboard_uri.test
       MONGO_URI: mongodb://localhost:27017/
-      TEST_DATABASE_NAME: property_manager_test
+      DATABASE_NAME: property_manager_test
       INMOBILIARY_COLLECTION: inmobiliary
+      PUBLICATIONS_COLLECTION: publications
       REDIS_HOST: localhost
       REDIS_PORT: 6379
 
